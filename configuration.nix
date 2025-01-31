@@ -74,6 +74,17 @@
   # Bluetooth, https://nixos.wiki/wiki/Bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true; # provides bluetooth manager and applet
+  # Some bluetooth headsets have buttons for pause/play or to skip to the next track.
+  # To make these buttons usable with media players supporting the dbus-based MPRIS 
+  # standard, one can use mpris-proxy that is part of bluez package. The following
+  # snippet can be used in Home Manager to start this program as a daemon: 
+  systemd.user.services.mpris-proxy = {
+    description = "Mpris proxy";
+    after = [ "network.target" "sound.target" ];
+    wantedBy = [ "default.target" ];
+    serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
+  };
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -132,7 +143,6 @@
 
   # Services
   # services.openssh.enable = true;
-  services.blueman.enable = true; # provides bluetooth manager and applet
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
