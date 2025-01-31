@@ -71,6 +71,10 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Bluetooth, https://nixos.wiki/wiki/Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -126,13 +130,9 @@
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
-  
-  # Bluetooth, https://nixos.wiki/wiki/Bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-
   # Services
   # services.openssh.enable = true;
+  services.blueman.enable = true; # provides bluetooth manager and applet
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
