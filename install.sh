@@ -25,6 +25,7 @@ mkdir -p ~/.config/kitty
 ln -f "$(dirname "$0")/home/.config/kitty/kitty.conf" ~/.config/kitty/kitty.conf
 ln -f "$(dirname "$0")/home/.config/kitty/theme.conf" ~/.config/kitty/theme.conf
 
+ln -f "$(dirname "$0")/home/pictures/nix-wallpaper-nineish-dark-gray.png" ~/Pictures/nix-wallpaper-nineish-dark-gray.png
 
 # rebuild nixos
 sudo nixos-rebuild switch
