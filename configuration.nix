@@ -36,11 +36,9 @@
     LC_TIME = "da_DK.UTF-8";
   };
 
-  # Opengl
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
-  };
+  # graphics (was called opengl)
+  hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
 	
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -98,7 +96,7 @@
   programs.hyprland.enable = true; 
   programs.xwayland.enable = true; 
   programs.git.enable = true; 
-  
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -118,11 +116,20 @@
     gh
     go
     kubectl
+
+    # other
+    spotify
+    discord-ptb
   ];
 
   # desktop portal
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+
+  
+  # Bluetooth, https://nixos.wiki/wiki/Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 
   # Services
   # services.openssh.enable = true;
