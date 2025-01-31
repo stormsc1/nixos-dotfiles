@@ -69,16 +69,6 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true; # provides bluetooth manager and applet
-  # Some bluetooth headsets have buttons for pause/play or to skip to the next track.
-  # To make these buttons usable with media players supporting the dbus-based MPRIS 
-  # standard, one can use mpris-proxy that is part of bluez package. The following
-  # snippet can be used in Home Manager to start this program as a daemon: 
-  systemd.user.services.mpris-proxy = {
-    description = "Mpris proxy";
-    after = [ "network.target" "sound.target" ];
-    wantedBy = [ "default.target" ];
-    serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
-  };
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -88,7 +78,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    jack.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -137,7 +126,7 @@
     cmake
     gcc
     wget
-
+    playerctl # cli for sending commands to MPRIS
     # other
     neofetch
     spotify
@@ -146,6 +135,7 @@
 
   # desktop portal
   xdg.portal.enable = true;
+  xdg.portal.xdgOpenUsePortal = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Services
@@ -159,5 +149,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }
