@@ -17,5 +17,9 @@ mkdir -p ~/.config/waybar/scripts
 ln -f "$(dirname "$0")/home/.config/waybar/scripts/refresh.sh" ~/.config/waybar/scripts/refresh.sh
 ln -f "$(dirname "$0")/home/.config/waybar/scripts/colorpicker.sh" ~/.config/waybar/scripts/colorpicker.sh
 
+mkdir -p ~/.config/wofi
+ln -f "$(dirname "$0")/home/.config/wofi/config" ~/.config/wofi/config
+ln -f "$(dirname "$0")/home/.config/wofi/style.css" ~/.config/wofi/style.css
+
 # rebuild nixos
 sudo nixos-rebuild switch
