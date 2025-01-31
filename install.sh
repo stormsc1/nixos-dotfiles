@@ -21,5 +21,10 @@ mkdir -p ~/.config/wofi
 ln -f "$(dirname "$0")/home/.config/wofi/config" ~/.config/wofi/config
 ln -f "$(dirname "$0")/home/.config/wofi/style.css" ~/.config/wofi/style.css
 
+mkdir -p ~/.config/kitty
+ln -f "$(dirname "$0")/home/.config/kitty/kitty.conf" ~/.config/kitty/kitty.conf
+ln -f "$(dirname "$0")/home/.config/kitty/theme.conf" ~/.config/kitty/theme.conf
+
+
 # rebuild nixos
 sudo nixos-rebuild switch
