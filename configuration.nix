@@ -23,7 +23,6 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_DK.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "da_DK.UTF-8";
     LC_IDENTIFICATION = "da_DK.UTF-8";
@@ -40,7 +39,6 @@
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
 	
-  services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   hardware.nvidia.modesetting.enable = true; #required by most wayland compositors
   hardware.nvidia.open = false;
@@ -52,24 +50,20 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
+  services.xserver.videoDrivers = ["nvidia"];
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
   services.xserver.displayManager.gdm.wayland = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "dk";
-    variant = "";
-  };
+  services.xserver.xkb.layout = "dk";
+  services.xserver.xkb.variant = "";
 
   # Configure console keymap
   console.keyMap = "dk-latin1";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  # services.printing.drivers = [ pkgs.epson-escpr ];
+  # services.printing.browsing = true;
+  # services.printing.defaultShared = true;
 
   # Bluetooth, https://nixos.wiki/wiki/Bluetooth
   hardware.bluetooth.enable = true;
@@ -94,6 +88,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -102,18 +97,26 @@
     description = "storm";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-    #  thunderbird
+      # packages currently installed with systemPackages since i am the only user of this system
     ];
   };
 
+  # Fonts
+  fonts.fontDir.enable = true;
+  fonts.fonts = with pkgs; [
+    nerdfonts
+    font-awesome
+    google-fonts
+  ];
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+  
   # Install firefox.
   programs.firefox.enable = true;
   programs.hyprland.enable = true; 
   programs.xwayland.enable = true; 
   programs.git.enable = true; 
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -131,8 +134,12 @@
     gh
     go
     kubectl
+    cmake
+    gcc
+    wget
 
     # other
+    neofetch
     spotify
     discord-ptb
   ];
@@ -143,6 +150,7 @@
 
   # Services
   # services.openssh.enable = true;
+  services.dbus.enable = true; # required for a bunch of inter process communication inc. MPRIS
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
