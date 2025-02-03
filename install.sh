@@ -9,6 +9,8 @@ fi
 sudo ln -f "$(dirname "$0")/configuration.nix" /etc/nixos/configuration.nix
 ln -f "$(dirname "$0")/home/.config/hypr/hyprland.conf" ~/.config/hypr/hyprland.conf
 ln -f "$(dirname "$0")/home/.config/hypr/hyprpaper.conf" ~/.config/hypr/hyprpaper.conf
+ln -f "$(dirname "$0")/home/.bashrc" ~/.bashrc
+
 # symlink waybar folder
 mkdir -p ~/.config/waybar
 ln -f "$(dirname "$0")/home/.config/waybar/config" ~/.config/waybar/config
@@ -26,6 +28,7 @@ ln -f "$(dirname "$0")/home/.config/kitty/kitty.conf" ~/.config/kitty/kitty.conf
 ln -f "$(dirname "$0")/home/.config/kitty/theme.conf" ~/.config/kitty/theme.conf
 
 ln -f "$(dirname "$0")/home/pictures/nix-wallpaper-nineish-dark-gray.png" ~/Pictures/nix-wallpaper-nineish-dark-gray.png
+
 
 # rebuild nixos
 sudo nixos-rebuild switch
