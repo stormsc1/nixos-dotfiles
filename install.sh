@@ -10,6 +10,7 @@ sudo ln -f "$(dirname "$0")/configuration.nix" /etc/nixos/configuration.nix
 ln -f "$(dirname "$0")/home/.config/hypr/hyprland.conf" ~/.config/hypr/hyprland.conf
 ln -f "$(dirname "$0")/home/.config/hypr/hyprpaper.conf" ~/.config/hypr/hyprpaper.conf
 ln -f "$(dirname "$0")/home/.bashrc" ~/.bashrc
+ln -f "$(dirname "$0")/home/.npmrc" ~/.npmrc
 
 # symlink waybar folder
 mkdir -p ~/.config/waybar
