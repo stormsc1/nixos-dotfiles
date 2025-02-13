@@ -116,7 +116,7 @@
     libnotify # dep of dunst
     hyprpaper # wallpaper
     wofi # app manager
-    
+    nodejs
     # programs
     vscode
     # dev tools
